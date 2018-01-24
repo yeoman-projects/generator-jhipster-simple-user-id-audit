@@ -37,14 +37,7 @@ module.exports = class extends BaseGenerator {
     }
 
     prompting() {
-        const prompts = [
-            {
-                type: 'input',
-                name: 'message',
-                message: 'Please put something',
-                default: 'hello world!'
-            }
-        ];
+        const prompts = [];
 
         const done = this.async();
         this.prompt(prompts).then((props) => {
@@ -64,6 +57,7 @@ module.exports = class extends BaseGenerator {
                 this
             );
         };
+        this.javaTemplateDir = 'src/main/java/package/';
 
         // read config from .yo-rc.json
         this.baseName = this.jhipsterAppConfig.baseName;
@@ -78,46 +72,14 @@ module.exports = class extends BaseGenerator {
 
         // use constants from generator-constants.js
         const javaDir = `${jhipsterConstants.SERVER_MAIN_SRC_DIR + this.packageFolder}/`;
-        const resourceDir = jhipsterConstants.SERVER_MAIN_RES_DIR;
-        const webappDir = jhipsterConstants.CLIENT_MAIN_SRC_DIR;
+        // const resourceDir = jhipsterConstants.SERVER_MAIN_RES_DIR;
+        // const webappDir = jhipsterConstants.CLIENT_MAIN_SRC_DIR;
 
-        // variable from questions
-        this.message = this.props.message;
-
-        // show all variables
-        this.log('\n--- some config read from config ---');
-        this.log(`baseName=${this.baseName}`);
-        this.log(`packageName=${this.packageName}`);
-        this.log(`clientFramework=${this.clientFramework}`);
-        this.log(`clientPackageManager=${this.clientPackageManager}`);
-        this.log(`buildTool=${this.buildTool}`);
-
-        this.log('\n--- some function ---');
-        this.log(`angularAppName=${this.angularAppName}`);
-
-        this.log('\n--- some const ---');
-        this.log(`javaDir=${javaDir}`);
-        this.log(`resourceDir=${resourceDir}`);
-        this.log(`webappDir=${webappDir}`);
-
-        this.log('\n--- variables from questions ---');
-        this.log(`\nmessage=${this.message}`);
-        this.log('------\n');
-
-        if (this.clientFramework === 'angular1') {
-            this.template('dummy.txt', 'dummy-angular1.txt');
-        }
-        if (this.clientFramework === 'angularX' || this.clientFramework === 'angular2') {
-            this.template('dummy.txt', 'dummy-angularX.txt');
-        }
-        if (this.buildTool === 'maven') {
-            this.template('dummy.txt', 'dummy-maven.txt');
-        }
-        if (this.buildTool === 'gradle') {
-            this.template('dummy.txt', 'dummy-gradle.txt');
-        }
+        this.template(`${this.javaTemplateDir}security/_SpringSecurityAuditorAware.java`, `${javaDir}security/SpringSecurityAuditorAware.java`);
+        this.template(`${this.javaTemplateDir}domain/_AbstractAuditingEntity.java`, `${javaDir}domain/AbstractAuditingEntity.java`);
+        this.template(`${this.javaTemplateDir}service/dto/_AbstractAuditingDTO.java`, `${javaDir}domain/AbstractAuditingDTO.java`);
         try {
-            this.registerModule('generator-jhipster-simple-user-id-audit', 'entity', 'post', 'app', 'Custom simple audit using user id');
+            this.registerModule('generator-jhipster-simple-user-id-audit', 'entity', 'post', 'entity', 'Custom simple audit using user id');
         } catch (err) {
             this.log(`${chalk.red.bold('WARN!')} Could not register as a jhipster entity post creation hook...\n`);
         }

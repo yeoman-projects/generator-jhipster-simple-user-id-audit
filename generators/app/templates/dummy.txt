@@ -1,2 +1,0 @@
-hello simple-user-id-audit!
-It's dummy.txt
