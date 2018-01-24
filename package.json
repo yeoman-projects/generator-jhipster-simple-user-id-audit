@@ -3,8 +3,6 @@
   "version": "0.0.0",
   "description": "Custom simple audit using user id",
   "keywords": [
-    "yeoman-generator",
-    "jhipster-module"
   ],
   "homepage": "https://github.com/tientq/generator-jhipster-simple-user-id-audit",
   "author": {
@@ -42,10 +40,7 @@
     "pretest": "eslint .",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "release": "git push && git push --tags && npm publish",
-    "release:patch": "npm version patch -a -m \"Update to %s\" && npm run release",
-    "release:minor": "npm version minor -a -m \"Update to %s\" && npm run release",
-    "release:major": "npm version major -a -m \"Update to %s\" && npm run release",
+    "release": "git push && git push --tags",
     "test": "mocha test/*"
   },
   "license": "Apache-2.0",
