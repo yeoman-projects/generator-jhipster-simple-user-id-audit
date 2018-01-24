@@ -77,7 +77,7 @@ module.exports = class extends BaseGenerator {
 
         this.template(`${this.javaTemplateDir}security/_SpringSecurityAuditorAware.java`, `${javaDir}security/SpringSecurityAuditorAware.java`);
         this.template(`${this.javaTemplateDir}domain/_AbstractAuditingEntity.java`, `${javaDir}domain/AbstractAuditingEntity.java`);
-        this.template(`${this.javaTemplateDir}service/dto/_AbstractAuditingDTO.java`, `${javaDir}domain/AbstractAuditingDTO.java`);
+        this.template(`${this.javaTemplateDir}service/dto/_AbstractAuditingDTO.java`, `${javaDir}service/dto/AbstractAuditingDTO.java`);
         try {
             this.registerModule('generator-jhipster-simple-user-id-audit', 'entity', 'post', 'entity', 'Custom simple audit using user id');
         } catch (err) {
