@@ -1,6 +1,6 @@
 {
   "name": "generator-jhipster-simple-user-id-audit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Custom simple audit using user id",
   "keywords": [
   ],
