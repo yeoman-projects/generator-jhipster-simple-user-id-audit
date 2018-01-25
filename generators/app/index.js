@@ -165,7 +165,7 @@ module.exports = class extends BaseGenerator {
             });
         });
 
-        // this.replaceContent(`${testDir}service/UserServiceIntTest.java`, 'private static final String UPDATED_LOGIN = "jhipster";', importDefaultLogin, false);
+        this.addNpmDevDependency('generator-jhipster-simple-user-id-audit', 'https://github.com/tientq/generator-jhipster-simple-user-id-audit.git#master');
 
         try {
             this.registerModule('generator-jhipster-simple-user-id-audit', 'app', 'post', 'app', 'Custom simple audit using user id');
