@@ -1,7 +1,5 @@
 package <%=packageName%>.security;
 
-import <%=packageName%>.config.Constants;
-
 import <%=packageName%>.domain.User;
 import <%=packageName%>.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,8 @@ public class SpringSecurityAuditorAware implements AuditorAware<Long> {
 
     @Override
     public Long getCurrentAuditor() {
-        String login = SecurityUtils.getCurrentUserLogin().orElse(Constants.SYSTEM_ACCOUNT);
-        return userRepository.findOneWithAuthoritiesByLogin(login).map(User::getId).orElse(1L);
+        return SecurityUtils.getCurrentUserLogin()
+            .map(login -> userRepository.findOneWithAuthoritiesByLogin(login).map(User::getId).orElse(1L))
+            .orElse(1L);
     }
 }
